@@ -20,9 +20,9 @@
 
 ## Deskripsi
 
-**Sistem Retail Toko Elektronik adalah aplikasi sistem informasi berbasis cloud computing sederhana yang digunakan untuk mengelola data produk elektronik, transaksi penjualan, dan dashboard monitoring penjualan.
+**Sistem Retail Toko Elektronik** adalah aplikasi sistem informasi berbasis cloud computing sederhana yang digunakan untuk mengelola data produk elektronik, transaksi penjualan, dan dashboard monitoring penjualan.
 
-Sistem ini diimplementasikan menggunakan arsitektur **3-tier Virtual Machine (VM)** yang diisolasi secara mandiri untuk menjamin skalabilitas dan keamanan data.
+Sistem ini diimplementasikan menggunakan arsitektur **3 tier Virtual Machine**.
 
 ---
 
