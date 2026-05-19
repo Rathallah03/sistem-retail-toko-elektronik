@@ -12,7 +12,7 @@
 
 | Nama | NIM |
 | :--- | :--- |
-| **Raihan Athallah** |
+| **Raihan Athallah** | 101032400117 |
 | **Alif** | - |
 | **Nabil Gaming** |
 
