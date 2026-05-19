@@ -2,8 +2,8 @@
 
 ## Anggota Kelompok
 - Raihan Athallah  : 101032400117
-- Alif Aiman       : 101032400232
-- Nabil Muhammad Ar Rasya Gaming   : 101032400238
+- Alif
+- Nabil Muhammad Ar Rasya Gaming 
 ---
 
 
