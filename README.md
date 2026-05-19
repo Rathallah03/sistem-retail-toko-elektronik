@@ -1,9 +1,12 @@
 # Sistem Retail Toko Elektronik
 
+---
 ## Anggota Kelompok
 - Raihan Athallah  : 101032400117
 - Alif Aiman       : 101032400232
 - Nabil Muhammad   : 101032400238
+---
+
 
 ## Deskripsi
 Sistem Retail Toko Elektronik adalah aplikasi sistem informasi berbasis cloud computing sederhana yang digunakan untuk mengelola data produk elektronik, transaksi penjualan, dan dashboard monitoring penjualan.
