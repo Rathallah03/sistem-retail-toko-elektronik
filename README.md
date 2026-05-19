@@ -22,13 +22,16 @@
 
 **Sistem Retail Toko Elektronik** adalah aplikasi sistem informasi berbasis cloud computing sederhana yang digunakan untuk mengelola data produk elektronik, transaksi penjualan, dan dashboard monitoring penjualan.
 
-Sistem ini diimplementasikan menggunakan arsitektur **3 tier Virtual Machine**.
+Sistem ini diimplementasikan menggunakan arsitektur **3 tier Virtual Machine**:
+- VM Frontend
+- VM Backend
+- VM Database
 
 ---
 
 ## Arsitektur Sistem
 
-Proyek ini dibangun di atas infrastruktur lokal menggunakan **Vagrant** dan diorkestrasi dengan **Ansible** menggunakan 3 VM utama:
+Proyek ini dibangun di atas infrastruktur lokal menggunakan **Vagrant** dan diorkestrasi dengan **Ans  ible** menggunakan 3 VM utama:
 
 ### VM Frontend
 * **IP Address:** `192.168.56.12`
@@ -48,20 +51,22 @@ Proyek ini dibangun di atas infrastruktur lokal menggunakan **Vagrant** dan dior
 
 ## Fitur Utama Sistem
 
-### Manajemen Produk
-* Operasi CRUD Lengkap (Tambah, Lihat, Edit, Hapus produk elektronik).
-* Manajemen kontrol stok otomatis.
-* Manajemen penyesuaian harga produk.
+### Produk
+- Tambah produk
+- Edit produk
+- Hapus produk
+- Manajemen stok
+- Harga produk
 
-### Sistem Transaksi
-* Input data transaksi penjualan baru.
-* Kalkulasi total belanja dan kembalian secara otomatis.
-* Pencatatan riwayat transaksi yang aman di sisi database.
+### Transaksi
+- Tambah transaksi penjualan
+- Total otomatis
+- Riwayat transaksi
 
-### Dashboard Monitoring
-* Statistik total jenis produk yang tersedia.
-* Akumulasi jumlah transaksi yang berhasil diproses.
-* Grafik/Metrik total pendapatan penjualan.
+### Dashboard
+- Total produk
+- Total transaksi
+- Total penjualan
 
 ---
 
@@ -70,9 +75,9 @@ Proyek ini dibangun di atas infrastruktur lokal menggunakan **Vagrant** dan dior
 ```text
 retail-cloud/
 │
-├── ansible/          # Playbook dan konfigurasi otomatisasi server
-├── backend/          # Source code Flask REST API
-├── database/         # Script inisialisasi skema & dummy data MySQL
-├── frontend/         # File statis (HTML, CSS, JS) & konfigurasi Nginx
-├── README.md         # Dokumentasi proyek
-└── Vagrantfile       # Definisi konfigurasi Multi-VM
+├── ansible/
+├── backend/
+├── database/
+├── frontend/
+├── README.md
+└── Vagrantfile
