@@ -10,11 +10,11 @@
 
 ## 👥 Anggota Kelompok
 
-| Nama | NIM | Peran / Fokus |
-| :--- | :--- | :--- |
-| **Raihan Athallah** | 101032400117 | Backend & Infrastructure |
-| **Alif** | - | Frontend Developer |
-| **Nabil Muhammad Ar Rasya** | - | Database Administrator |
+| Nama | NIM |
+| :--- | :--- |
+| **Raihan Athallah** |
+| **Alif** | - |
+| **Nabil Gaming** |
 
 > *Catatan: Silakan sesuaikan kolom Peran/Fokus dan lengkapi NIM di atas sesuai kebutuhan tim kamu.*
 
