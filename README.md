@@ -13,61 +13,59 @@
 | Nama | NIM |
 | :--- | :--- |
 | **Raihan Athallah** | 101032400117 |
-| **Alif** | - |
+| **Alif Motor** | - |
 | **Nabil Gaming** |
-
-> *Catatan: Silakan sesuaikan kolom Peran/Fokus dan lengkapi NIM di atas sesuai kebutuhan tim kamu.*
 
 ---
 
-## 📝 Deskripsi Proyek
+## Deskripsi
 
-**Sistem Retail Toko Elektronik** adalah aplikasi sistem informasi berbasis *cloud computing* sederhana yang dirancang untuk mengelola data produk elektronik, manajemen transaksi penjualan, serta menyediakan dashboard monitoring performa toko secara real-time.
+**Sistem Retail Toko Elektronik adalah aplikasi sistem informasi berbasis cloud computing sederhana yang digunakan untuk mengelola data produk elektronik, transaksi penjualan, dan dashboard monitoring penjualan.
 
 Sistem ini diimplementasikan menggunakan arsitektur **3-tier Virtual Machine (VM)** yang diisolasi secara mandiri untuk menjamin skalabilitas dan keamanan data.
 
 ---
 
-## 🏗️ Arsitektur Sistem
+## Arsitektur Sistem
 
 Proyek ini dibangun di atas infrastruktur lokal menggunakan **Vagrant** dan diorkestrasi dengan **Ansible** menggunakan 3 VM utama:
 
-### 🌐 VM Frontend
+### VM Frontend
 * **IP Address:** `192.168.56.12`
 * **Teknologi:** * ![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white) sebagai Web Server
   * HTML5, CSS3, & Vanilla JavaScript
 
-### ⚙️ VM Backend
+### VM Backend
 * **IP Address:** `192.168.56.10`
 * **Teknologi:** * ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) Flask Framework
   * RESTful API Development
 
-### 🗄️ VM Database
+### VM Database
 * **IP Address:** `192.168.56.11`
 * **Teknologi:** * ![MySQL](https://img.shields.io/badge/MySQL-00758F?style=flat-square&logo=mysql&logoColor=white) Relational Database
 
 ---
 
-## 🚀 Fitur Utama Sistem
+## Fitur Utama Sistem
 
-### 📦 Manajemen Produk
+### Manajemen Produk
 * Operasi CRUD Lengkap (Tambah, Lihat, Edit, Hapus produk elektronik).
 * Manajemen kontrol stok otomatis.
 * Manajemen penyesuaian harga produk.
 
-### 💳 Sistem Transaksi
+### Sistem Transaksi
 * Input data transaksi penjualan baru.
 * Kalkulasi total belanja dan kembalian secara otomatis.
 * Pencatatan riwayat transaksi yang aman di sisi database.
 
-### 📊 Dashboard Monitoring
+### Dashboard Monitoring
 * Statistik total jenis produk yang tersedia.
 * Akumulasi jumlah transaksi yang berhasil diproses.
 * Grafik/Metrik total pendapatan penjualan.
 
 ---
 
-## 📂 Struktur Folder Proyek
+## Struktur Folder Proyek
 
 ```text
 retail-cloud/
