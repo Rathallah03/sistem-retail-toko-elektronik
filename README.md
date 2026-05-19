@@ -1,11 +1,11 @@
 # Sistem Retail Toko Elektronik
 
----
 ## Anggota Kelompok
 - Raihan Athallah  : 101032400117
 - Alif Aiman       : 101032400232
 - Nabil Muhammad   : 101032400238
 ---
+
 
 
 ## Deskripsi
