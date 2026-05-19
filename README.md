@@ -1,3 +1,5 @@
+<div align="center">
+
 # Sistem Retail Toko Elektronik
 
 ## Anggota Kelompok
