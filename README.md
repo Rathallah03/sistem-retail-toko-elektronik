@@ -14,7 +14,7 @@
 | :--- | :--- |
 | **Raihan Athallah** | 101032400117 |
 | **Alif Motor** | - |
-| **Nabil Gaming** |
+| **Nabil Muhammad Ar Rasya** | 101032400238 |
 
 ---
 
