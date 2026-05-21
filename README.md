@@ -13,7 +13,7 @@
 | Nama | NIM |
 | :--- | :--- |
 | **Raihan Athallah** | 101032400117 |
-| **Alif Motor** | - |
+| **Alif Aiman Ghiyats** | 101032400232 |
 | **Nabil Muhammad Ar Rasya** | 101032400238 |
 
 ---
