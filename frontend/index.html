@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Retail Toko Elektronik</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        th {
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sistem Retail Toko Elektronik</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Produk</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Stok</th>
+            </tr>
+        </thead>
+
+        <tbody id="product-table"></tbody>
+    </table>
+
+<script>
+
+const API_URL = 'http://192.168.56.10:5000/api/products';
+
+async function loadProducts() {
+
+    const response = await fetch(API_URL);
+    const products = await response.json();
+
+    const table = document.getElementById('product-table');
+
+    table.innerHTML = '';
+
+    products.forEach(product => {
+
+        table.innerHTML += `
+            <tr>
+                <td>${product.id}</td>
+                <td>${product.nama_produk}</td>
+                <td>${product.kategori}</td>
+                <td>Rp ${product.harga}</td>
+                <td>${product.stok}</td>
+            </tr>
+        `;
+    });
+}
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
