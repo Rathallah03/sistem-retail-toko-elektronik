@@ -26,6 +26,10 @@
             padding: 10px;
         }
 
+        .center {
+            text-align: center;
+        }
+
         th {
             background: #333;
             color: white;
@@ -36,6 +40,23 @@
 
     <h1>Sistem Retail Toko Elektronik</h1>
 
+    <h2>Tambah Produk</h2>
+    <input type="text" id="nama_produk" placeholder="Nama Produk">
+    <input type="text" id="kategori" placeholder="Kategori">
+    <input type="number" id="harga" placeholder="Harga">
+    <input type="number" id="stok" placeholder="Stok">
+    <input type="hidden" id="product_id">
+
+    <button onclick="addProduct()">
+        Tambah Produk
+    </button>
+
+    <button onclick="updateProduct()">
+        Update Produk
+    </button>
+
+    <hr>
+
     <table>
         <thead>
             <tr>
@@ -44,6 +65,7 @@
                 <th>Kategori</th>
                 <th>Harga</th>
                 <th>Stok</th>
+                <th>Aksi</th>
             </tr>
         </thead>
 
@@ -70,11 +92,160 @@ async function loadProducts() {
                 <td>${product.id}</td>
                 <td>${product.nama_produk}</td>
                 <td>${product.kategori}</td>
-                <td>Rp ${product.harga}</td>
-                <td>${product.stok}</td>
+                <td>
+                    Rp ${Number(product.harga).toLocaleString('id-ID')}
+                </td>
+                <td class="center">${product.stok}</td>
+
+                <td class="center">
+                    <button onclick="editProduct(
+                        ${product.id},
+                        '${product.nama_produk}',
+                        '${product.kategori}',
+                        ${product.harga},
+                        ${product.stok}
+                    )">
+                        Edit
+                    </button>
+
+                    <button onclick="deleteProduct(${product.id})">
+                        Hapus
+                    </button>
+                </td>
             </tr>
         `;
     });
+}
+
+async function addProduct() {
+
+    const nama_produk = document.getElementById('nama_produk').value;
+    const kategori = document.getElementById('kategori').value;
+    const harga = document.getElementById('harga').value;
+    const stok = document.getElementById('stok').value;
+
+    const response = await fetch(API_URL, {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            nama_produk,
+            kategori,
+            harga,
+            stok
+        })
+    });
+
+    const result = await response.json();
+
+    alert(result.message);
+
+    loadProducts();
+
+    document.getElementById('nama_produk').value = '';
+    document.getElementById('kategori').value = '';
+    document.getElementById('harga').value = '';
+    document.getElementById('stok').value = '';
+}
+
+async function deleteProduct(id) {
+
+    const konfirmasi =
+        confirm("Yakin ingin menghapus produk ini?");
+
+    if (!konfirmasi) {
+        return;
+    }
+
+    const response = await fetch(
+        `${API_URL}/${id}`,
+        {
+            method: 'DELETE'
+        }
+    );
+
+    const result = await response.json();
+
+    alert(result.message);
+
+    loadProducts();
+}
+
+function editProduct(
+    id,
+    nama_produk,
+    kategori,
+    harga,
+    stok
+) {
+
+    document.getElementById('product_id').value = id;
+
+    document.getElementById('nama_produk').value = nama_produk;
+
+    document.getElementById('kategori').value = kategori;
+
+    document.getElementById('harga').value = harga;
+
+    document.getElementById('stok').value = stok;
+}
+
+async function updateProduct() {
+
+    const id =
+        document.getElementById('product_id').value;
+
+    if (!id) {
+        alert('Pilih produk terlebih dahulu');
+        return;
+    }
+
+    const nama_produk =
+        document.getElementById('nama_produk').value;
+
+    const kategori =
+        document.getElementById('kategori').value;
+
+    const harga =
+        document.getElementById('harga').value;
+
+    const stok =
+        document.getElementById('stok').value;
+
+    const response = await fetch(
+        `${API_URL}/${id}`,
+        {
+            method: 'PUT',
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify({
+                nama_produk,
+                kategori,
+                harga,
+                stok
+            })
+        }
+    );
+
+    const result = await response.json();
+
+    alert(result.message);
+
+    loadProducts();
+
+    document.getElementById('product_id').value = '';
+
+    document.getElementById('nama_produk').value = '';
+    document.getElementById('kategori').value = '';
+    document.getElementById('harga').value = '';
+    document.getElementById('stok').value = '';
 }
 
 loadProducts();
