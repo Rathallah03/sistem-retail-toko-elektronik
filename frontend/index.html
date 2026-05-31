@@ -40,6 +40,47 @@
 
     <h1>Sistem Retail Toko Elektronik</h1>
 
+        <div id="dashboard">
+
+        <p>
+            Total Produk:
+            <span id="total_produk">0</span>
+        </p>
+
+        <p>
+            Total Transaksi:
+            <span id="total_transaksi">0</span>
+        </p>
+
+        <p>
+            Total Penjualan:
+            Rp <span id="total_penjualan">0</span>
+        </p>
+
+    </div>
+
+    <hr>
+
+    <h2>Riwayat Transaksi</h2>
+
+    <table>
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Produk</th>
+        <th>Qty</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+
+    <tbody id="transaction-table">
+    </tbody>
+
+    </table>
+
+    <hr>
+
     <h2>Tambah Produk</h2>
     <input type="text" id="nama_produk" placeholder="Nama Produk">
     <input type="text" id="kategori" placeholder="Kategori">
@@ -53,6 +94,23 @@
 
     <button onclick="updateProduct()">
         Update Produk
+    </button>
+
+    <hr>
+
+    <h2>Transaksi Penjualan</h2>
+
+    <select id="transaction_product">
+    </select>
+
+    <input
+        type="number"
+        id="transaction_qty"
+        placeholder="Jumlah"
+    >
+
+    <button onclick="addTransaction()">
+        Proses Transaksi
     </button>
 
     <hr>
@@ -80,6 +138,13 @@ async function loadProducts() {
 
     const response = await fetch(API_URL);
     const products = await response.json();
+
+    const dropdown =
+        document.getElementById(
+            'transaction_product'
+        );
+
+    dropdown.innerHTML = '';
 
     const table = document.getElementById('product-table');
 
@@ -113,6 +178,11 @@ async function loadProducts() {
                     </button>
                 </td>
             </tr>
+        `;
+        dropdown.innerHTML += `
+        <option value="${product.id}">
+            ${product.nama_produk}
+        </option>
         `;
     });
 }
@@ -248,7 +318,121 @@ async function updateProduct() {
     document.getElementById('stok').value = '';
 }
 
+async function addTransaction() {
+
+    const product_id =
+        document.getElementById(
+            'transaction_product'
+        ).value;
+
+    const qty =
+        document.getElementById(
+            'transaction_qty'
+        ).value;
+
+    const response = await fetch(
+
+        'http://192.168.56.10:5000/api/transactions',
+
+        {
+            method: 'POST',
+
+            headers: {
+                'Content-Type':
+                    'application/json'
+            },
+
+            body: JSON.stringify({
+                product_id,
+                qty
+            })
+        }
+    );
+
+    const result =
+        await response.json();
+
+    alert(result.message);
+
+    loadProducts();
+    loadDashboard();
+    loadTransactions();
+
+    document.getElementById(
+        'transaction_qty'
+    ).value = '';
+}
+
+async function loadDashboard() {
+
+    const response =
+        await fetch(
+            'http://192.168.56.10:5000/api/dashboard'
+        );
+
+    const data =
+        await response.json();
+
+    document.getElementById(
+        'total_produk'
+    ).innerText =
+        data.total_produk;
+
+    document.getElementById(
+        'total_transaksi'
+    ).innerText =
+        data.total_transaksi;
+
+    document.getElementById(
+        'total_penjualan'
+    ).innerText =
+        Number(
+            data.total_penjualan
+        ).toLocaleString('id-ID');
+}
+
+async function loadTransactions() {
+
+    const response =
+        await fetch(
+            'http://192.168.56.10:5000/api/transactions'
+        );
+
+    const data =
+        await response.json();
+
+    const table =
+        document.getElementById(
+            'transaction-table'
+        );
+
+    table.innerHTML = '';
+
+    data.forEach(item => {
+
+        table.innerHTML += `
+        <tr>
+
+            <td>${item.id}</td>
+
+            <td>${item.nama_produk}</td>
+
+            <td>${item.qty}</td>
+
+            <td>
+                Rp ${Number(
+                    item.subtotal
+                ).toLocaleString('id-ID')}
+            </td>
+
+        </tr>
+        `;
+    });
+}
+
 loadProducts();
+loadDashboard();
+loadTransactions();
 
 </script>
 
