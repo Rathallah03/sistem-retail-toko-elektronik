@@ -260,6 +260,28 @@ def get_transactions():
     conn.close()
 
     return jsonify(data)
+
+@app.route('/api/reset-transactions', methods=['DELETE'])
+def reset_transactions():
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM transaction_items"
+    )
+
+    cursor.execute(
+        "DELETE FROM transactions"
+    )
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({
+        "message":
+        "Riwayat transaksi berhasil direset"
+    })
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

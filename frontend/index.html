@@ -5,6 +5,73 @@
     <title>Sistem Retail Toko Elektronik</title>
 
     <style>
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            margin-top: -10px;
+        }
+        .dashboard{
+            display:flex;
+            gap:20px;
+            margin-bottom:20px;
+        }
+
+        .card{
+            flex:1;
+            background:white;
+            border:1px solid #ddd;
+            border-radius:10px;
+            padding:15px;
+            text-align:center;
+
+            box-shadow:
+                0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .card h3{
+            margin:0;
+        }
+
+        .card p{
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .btn-add{
+            background:#28a745;
+            color:white;
+        }
+
+        .btn-update{
+            background:#007bff;
+            color:white;
+        }
+
+        .btn-edit{
+            background:#fd7e14;
+            color:white;
+        }
+
+        .btn-delete{
+            background:#dc3545;
+            color:white;
+        }
+
+        .btn-transaction{
+            background:#6f42c1;
+            color:white;
+        }
+
+        button{
+            border:none;
+            padding:8px 12px;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
         body {
             font-family: Arial;
             background: #f4f4f4;
@@ -34,34 +101,62 @@
             background: #333;
             color: white;
         }
+
+        .center {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Sistem Retail Toko Elektronik</h1>
+    <div class="header">
 
-        <div id="dashboard">
-
-        <p>
-            Total Produk:
-            <span id="total_produk">0</span>
-        </p>
+        <h1>
+            🖥️ Sistem Retail Toko Elektronik
+        </h1>
 
         <p>
-            Total Transaksi:
-            <span id="total_transaksi">0</span>
-        </p>
-
-        <p>
-            Total Penjualan:
-            Rp <span id="total_penjualan">0</span>
+            Aplikasi Manajemen Produk dan
+            Transaksi Berbasis Cloud Computing
         </p>
 
     </div>
 
+        <div class="dashboard">
+
+            <div class="card">
+                <h3>📦 Produk</h3>
+                <p id="total_produk">0</p>
+            </div>
+
+            <div class="card">
+                <h3>🛒 Transaksi</h3>
+                <p id="total_transaksi">0</p>
+            </div>
+
+            <div class="card">
+                <h3>💰 Penjualan</h3>
+                <p>
+                    Rp <span id="total_penjualan">0</span>
+                </p>
+            </div>
+
+        </div>
+        
+
     <hr>
 
     <h2>Riwayat Transaksi</h2>
+
+    <button
+    class="btn-delete"
+    onclick="resetTransactions()">
+
+    🧹 Reset Riwayat
+
+    </button>
+
+    </div>
 
     <table>
 
@@ -88,11 +183,13 @@
     <input type="number" id="stok" placeholder="Stok">
     <input type="hidden" id="product_id">
 
-    <button onclick="addProduct()">
+    <button class="btn-add"
+    onclick="addProduct()">
         Tambah Produk
     </button>
 
-    <button onclick="updateProduct()">
+    <button class="btn-update"
+    onclick="updateProduct()">
         Update Produk
     </button>
 
@@ -109,7 +206,8 @@
         placeholder="Jumlah"
     >
 
-    <button onclick="addTransaction()">
+    <button class="btn-transaction"
+    onclick="addTransaction()">
         Proses Transaksi
     </button>
 
@@ -154,7 +252,9 @@ async function loadProducts() {
 
         table.innerHTML += `
             <tr>
-                <td>${product.id}</td>
+                <td class="center">
+                    ${product.id}
+                </td>
                 <td>${product.nama_produk}</td>
                 <td>${product.kategori}</td>
                 <td>
@@ -163,7 +263,8 @@ async function loadProducts() {
                 <td class="center">${product.stok}</td>
 
                 <td class="center">
-                    <button onclick="editProduct(
+                    <button class="btn-edit"
+                    onclick="editProduct(
                         ${product.id},
                         '${product.nama_produk}',
                         '${product.kategori}',
@@ -173,7 +274,8 @@ async function loadProducts() {
                         Edit
                     </button>
 
-                    <button onclick="deleteProduct(${product.id})">
+                    <button class="btn-delete"
+                    onclick="deleteProduct(${product.id})">
                         Hapus
                     </button>
                 </td>
@@ -413,11 +515,15 @@ async function loadTransactions() {
         table.innerHTML += `
         <tr>
 
-            <td>${item.id}</td>
+            <td class="center">
+                ${item.id}
+            </td>
 
             <td>${item.nama_produk}</td>
 
-            <td>${item.qty}</td>
+            <td class="center">
+                ${item.qty}
+            </td>
 
             <td>
                 Rp ${Number(
@@ -430,6 +536,34 @@ async function loadTransactions() {
     });
 }
 
+async function resetTransactions(){
+
+    const konfirmasi =
+        confirm(
+            "Yakin ingin menghapus semua riwayat transaksi?"
+        );
+
+    if(!konfirmasi){
+        return;
+    }
+
+    const response =
+        await fetch(
+            'http://192.168.56.10:5000/api/reset-transactions',
+            {
+                method:'DELETE'
+            }
+        );
+
+    const result =
+        await response.json();
+
+    alert(result.message);
+
+    loadDashboard();
+    loadTransactions();
+}
+
 loadProducts();
 loadDashboard();
 loadTransactions();
@@ -437,4 +571,24 @@ loadTransactions();
 </script>
 
 </body>
+<hr>
+
+<footer>
+
+    <p>
+        Sistem Retail Toko Elektronik
+    </p>
+
+    <p>
+        Komputasi Awan
+    </p>
+
+    <p>
+        Kelompok:
+        Raihan,
+        Nabil,
+        Alif
+    </p>
+
+</footer>
 </html>
