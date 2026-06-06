@@ -49,6 +49,20 @@ Proyek ini dibangun di atas infrastruktur lokal menggunakan **Vagrant** dan dior
 
 ---
 
+## Tools dan Teknologi
+
+| Komponen | Teknologi |
+|-----------|-----------|
+| Virtualisasi | Vagrant + VirtualBox |
+| Frontend | HTML, CSS, JavaScript |
+| Backend | Python Flask |
+| Database | MySQL |
+| Web Server | Nginx |
+| Version Control | Git & GitHub |
+| Operating System | Ubuntu Server |
+
+---
+
 ## Fitur Utama Sistem
 
 ### Produk
