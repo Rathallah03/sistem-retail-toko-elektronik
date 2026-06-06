@@ -63,6 +63,38 @@ Proyek ini dibangun di atas infrastruktur lokal menggunakan **Vagrant** dan dior
 
 ---
 
+## Database Schema
+
+### products
+
+| Field | Tipe |
+|---------|---------|
+| id | INT |
+| nama_produk | VARCHAR |
+| kategori | VARCHAR |
+| harga | DECIMAL |
+| stok | INT |
+
+### transactions
+
+| Field | Tipe |
+|---------|---------|
+| id | INT |
+| tanggal | DATETIME |
+| total | DECIMAL |
+
+### transaction_items
+
+| Field | Tipe |
+|---------|---------|
+| id | INT |
+| transaction_id | INT |
+| product_id | INT |
+| qty | INT |
+| subtotal | DECIMAL |
+
+---
+
 ## Fitur Utama Sistem
 
 ### Produk
